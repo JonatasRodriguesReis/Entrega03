@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListaProdutos">
+    tools:context=".Home"
+    android:padding="32px"
+
+    >
 
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/txtEmail"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="Lista de produtos"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="64px"
-        android:textSize="32dp"
         android:layout_centerHorizontal="true"
-        ></TextView>
+        android:textSize="20dp"
+        android:text="Usuários"
+        android:textColor="@color/colorPrimary" />
 
 </RelativeLayout>
