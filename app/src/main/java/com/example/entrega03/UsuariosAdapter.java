@@ -57,6 +57,8 @@ public class UsuariosAdapter extends RecyclerView.Adapter {
 
     // Método responsável por remover um usuário da lista.
     public void removerItem(int position) {
+        BancoController db = new BancoController(context);
+        db.deletaUsuario(lista.get(position).nome);
         lista.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, lista.size());

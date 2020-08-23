@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="32dp"
+    tools:context=".NovoUsuario">
+
+    <TextView
+        android:id="@+id/txtNome"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Nome"
+        android:textColor="@color/colorPrimary" />
+
+    <EditText
+        android:id="@+id/edtNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textWebEmailAddress"
+        android:layout_marginTop="10px"
+        android:layout_below="@id/txtNome"
+        tools:layout_editor_absoluteX="12dp" />
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:layout_below="@id/edtNome"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:outlineAmbientShadowColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtEmail"
+        android:layout_marginTop="10px"/>
+
+    <TextView
+        android:id="@+id/txtSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Senha"
+        android:layout_below="@id/edtEmail"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <EditText
+        android:id="@+id/edtSenha"
+        android:inputType="textPassword"
+        android:outlineAmbientShadowColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtSenha"
+        android:layout_marginTop="10px"/>
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtSenha"
+        android:layout_marginTop="54dp"
+        android:width="150dp"
+        android:height="40dp"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:onClick="voltar"
+        android:text="Voltar"></Button>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnCadastrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtSenha"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="54dp"
+        android:layout_toRightOf="@id/btnVoltar"
+        android:width="150dp"
+        android:height="40dp"
+        android:background="@color/colorPrimary"
+        android:onClick="novoUsuario"
+        android:text="Cadastrar"
+        android:textColor="#fff"></Button>
+
+</RelativeLayout>
