@@ -14,6 +14,44 @@ public class BancoController {
         banco = new CreateDataBase(context);
     }
 
+    public Cursor carregaProdutos(){
+        Cursor cursor;
+        String[] campos =  {banco.IDProduto,banco.NomeProduto,banco.PrecoProduto};
+        db = banco.getReadableDatabase();
+        cursor = db.query(banco.TABELA_PRODUTOS, campos, null, null, null, null, null, null);
+
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        db.close();
+        return cursor;
+    }
+
+    public void deletaProduto(String nome){
+        String where = CreateDataBase.NomeProduto + "='" + nome+"'";
+        db = banco.getReadableDatabase();
+        db.delete(CreateDataBase.TABELA_PRODUTOS,where,null);
+        //db.close();
+    }
+
+    public String inserirProduto(String nome, String preco){
+        ContentValues valores;
+        long resultado;
+
+        db = banco.getWritableDatabase();
+        valores = new ContentValues();
+        valores.put("nome", nome);
+        valores.put("preco", preco);
+
+        resultado = db.insert(banco.TABELA_PRODUTOS, null, valores);
+        db.close();
+
+        if (resultado == -1)
+            return "Erro ao inserir produto";
+
+        return "Produto inserido com Sucesso";
+    }
+
     public String inserirUsuario(String nome, String email, String senha){
         ContentValues valores;
         long resultado;
@@ -30,7 +68,7 @@ public class BancoController {
         if (resultado == -1)
             return "Erro ao inserir registro";
 
-         return "Usuário inserido com Sucesso";
+        return "Usuário inserido com Sucesso";
 
     }
 

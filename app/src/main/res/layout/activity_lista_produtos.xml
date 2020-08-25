@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListaProdutos">
+    android:fitsSystemWindows="true">
 
+    <!-- A RecyclerView with some commonly used attributes -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvProdutos"
+        android:scrollbars="vertical"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android" />
 
-    <TextView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lista de produtos"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="64px"
-        android:textSize="32dp"
-        android:layout_centerHorizontal="true"
-        ></TextView>
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/baseline_add_24"
+        android:backgroundTint="@color/colorPrimary"
+        android:tint="#ffffff"
+        android:onClick="novoProduto"
+        app:borderWidth="0px"
+        android:contentDescription="Adicionar"
+        android:layout_margin="16dp" />
 
-</RelativeLayout>
+</FrameLayout>
+
+
+
+
+

@@ -7,34 +7,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class NovoUsuario extends AppCompatActivity {
+public class NovoProduto extends AppCompatActivity {
 
     EditText edtNome;
-    EditText edtEmail;
-    EditText edtSenha;
+    EditText edtPreco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_novo_usuario);
+        setContentView(R.layout.activity_novo_produto);
 
         edtNome = findViewById(R.id.edtNome);
-        edtEmail = findViewById(R.id.edtEmail);
-        edtSenha = findViewById(R.id.edtSenha);
+        edtPreco = findViewById(R.id.edtPreco);
 
-        getSupportActionBar().setTitle("Novo Usuário");
+        getSupportActionBar().setTitle("Novo Produto");
     }
 
-    public void addUsuario(View view){
+    public void addProduto(View view){
         Intent intent = new Intent();
         String nome = edtNome.getText().toString();
-        String email = edtEmail.getText().toString();
-        String senha = edtSenha.getText().toString();
+        String preco = edtPreco.getText().toString();
 
-        if(!nome.isEmpty() && !email.isEmpty() && !senha.isEmpty()){
+        if(!nome.isEmpty() && !preco.isEmpty()){
             intent.putExtra("nome", nome);
-            intent.putExtra("email", email);
-            intent.putExtra("senha", senha);
+            intent.putExtra("preco", preco);
             setResult(RESULT_OK, intent);
             finish();
         }

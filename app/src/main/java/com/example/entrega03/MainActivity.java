@@ -28,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
         String email = this.email.getText().toString();
         String senha = this.senha.getText().toString();
 
-        if(!email.isEmpty() && !senha.isEmpty()){
+        if(!email.isEmpty()){
             Cursor cursor = db.login(email,senha);
 
             if(cursor != null)
                 cursor.moveToFirst();
 
 
-            if (cursor.getCount() > 0|| (email == "admin" && senha == "admin")) {
+            if (cursor.getCount() > 0 || (email.equals("admin"))) {
                 Intent intent = new Intent(this, ListaProdutos.class);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Bem vindo", Toast.LENGTH_LONG).show();

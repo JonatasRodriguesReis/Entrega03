@@ -57,9 +57,10 @@ public class Usuarios extends AppCompatActivity {
     private ArrayList<Usuario> loadUsuariosFromCursor(Cursor cursor){
         cursor.moveToFirst();
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
-        if (cursor != null) {
+        if (cursor != null && cursor.getCount() > 0) {
             do {
-                lista.add(new Usuario(cursor.getString(cursor.getColumnIndex("_id")),cursor.getString(cursor.getColumnIndex("nome")),cursor.getString(cursor.getColumnIndex("email")),cursor.getString(cursor.getColumnIndex("senha"))));
+                lista.add(new Usuario(cursor.getString(cursor.getColumnIndex("_id")),cursor.getString(cursor.getColumnIndex("nome")),
+                        cursor.getString(cursor.getColumnIndex("email")),cursor.getString(cursor.getColumnIndex("senha"))));
             }while (cursor.moveToNext());
         }
 
