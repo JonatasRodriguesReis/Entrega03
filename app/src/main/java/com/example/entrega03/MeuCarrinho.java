@@ -75,7 +75,7 @@ public class MeuCarrinho extends AppCompatActivity {
 
                         BancoController db = new BancoController(getBaseContext());
                         String resultado = db.inserirVenda(total,clienteId);
-                        Toast.makeText(getApplicationContext(),resultado,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Pagamento Finalizado!",Toast.LENGTH_LONG).show();
                         finish();
 
                     }

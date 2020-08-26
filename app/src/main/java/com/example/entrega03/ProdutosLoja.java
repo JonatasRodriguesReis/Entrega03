@@ -77,7 +77,6 @@ public class ProdutosLoja extends AppCompatActivity {
             intent.putExtra("listaCarrinho",mAdapter.listaCarrinho);
             intent.putExtra("user",this.user);
             startActivity(intent);
-            this.inicializeAdapter();
         }
     }
 
