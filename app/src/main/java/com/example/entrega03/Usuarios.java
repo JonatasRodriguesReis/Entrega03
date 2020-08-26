@@ -41,10 +41,10 @@ public class Usuarios extends AppCompatActivity {
 
         // specify an adapter (see also next example)
 
-        usuarios = new ArrayList<Usuario>();
+        /*usuarios = new ArrayList<Usuario>();
         usuarios.add(new Usuario("Jonatas Rodrigues Reis","jonatas@gmail.com","123123"));
         usuarios.add(new Usuario("José de Maria Cardoso","jose@gmail.com","123123"));
-        usuarios.add(new Usuario("Maria Reis da Silva","maria@gmail.com","123123"));
+        usuarios.add(new Usuario("Maria Reis da Silva","maria@gmail.com","123123"));*/
 
         mAdapter = new UsuariosAdapter(loadUsuariosFromCursor(cursor),this);
         recyclerView.setAdapter(mAdapter);
@@ -59,8 +59,9 @@ public class Usuarios extends AppCompatActivity {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         if (cursor != null && cursor.getCount() > 0) {
             do {
+                boolean admin = cursor.getInt(cursor.getColumnIndex("admin")) == 1 ? true : false;
                 lista.add(new Usuario(cursor.getString(cursor.getColumnIndex("_id")),cursor.getString(cursor.getColumnIndex("nome")),
-                        cursor.getString(cursor.getColumnIndex("email")),cursor.getString(cursor.getColumnIndex("senha"))));
+                        cursor.getString(cursor.getColumnIndex("email")),cursor.getString(cursor.getColumnIndex("senha")),admin));
             }while (cursor.moveToNext());
         }
 
@@ -87,8 +88,8 @@ public class Usuarios extends AppCompatActivity {
                 String returnSenha = data.getStringExtra("senha");
 
                 BancoController db = new BancoController(getBaseContext());
-                Usuario user = new Usuario(returnNome, returnEmail, returnSenha);
-                String resultado = db.inserirUsuario(user.nome, user.email, user.senha);
+                Usuario user = new Usuario(returnNome, returnEmail, returnSenha, true);
+                String resultado = db.inserirUsuario(user.nome, user.email, user.senha, user.admin);
                 mAdapter.updateList(user);
 
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();

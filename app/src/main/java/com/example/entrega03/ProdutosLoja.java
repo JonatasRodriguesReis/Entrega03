@@ -12,50 +12,45 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ListaProdutos extends AppCompatActivity {
+public class ProdutosLoja extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    private ProdutosAdapter mAdapter;
+    private ProdutosLojaAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Produto> produtos;
+    int user;
 
     private static final int SECOND_ACTIVITY_REQUEST_CODE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_produtos);
-        getSupportActionBar().setTitle("Lista de Produtos");
+        setContentView(R.layout.activity_produtos_loja);
+        getSupportActionBar().setTitle("Produtos da Loja");
+        user = getIntent().getIntExtra("user",0);
 
         recyclerView = (RecyclerView) findViewById(R.id.rcvProdutos);
 
-        BancoController crud = new BancoController(getBaseContext());
-        Cursor cursor = crud.carregaProdutos();
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // specify an adapter (see also next example)
+        this.inicializeAdapter();
 
-        produtos = new ArrayList<Produto>();
-        produtos.add(new Produto("Pneu","120"));
-        produtos.add(new Produto("Arroz","130"));
-        produtos.add(new Produto("Feijão","150"));
-
-        mAdapter = new ProdutosAdapter(loadProdutosFromCursor(cursor),this);
         recyclerView.setAdapter(mAdapter);
         recyclerView.addItemDecoration(
                 new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
+    }
+
+    private void inicializeAdapter(){
+        BancoController crud = new BancoController(getBaseContext());
+        Cursor cursor = crud.carregaProdutos();
+        mAdapter = new ProdutosLojaAdapter(loadProdutosFromCursor(cursor),this);
     }
 
     private ArrayList<Produto> loadProdutosFromCursor(Cursor cursor){
@@ -71,17 +66,28 @@ public class ListaProdutos extends AppCompatActivity {
         return lista;
     }
 
+    public void abrirCarrinho(View view){
+        if(mAdapter.listaCarrinho.size() > 0){
+            Intent intent = new Intent(this, MeuCarrinho.class);
+            intent.putExtra("listaCarrinho",mAdapter.listaCarrinho);
+            intent.putExtra("user",this.user);
+            startActivity(intent);
+            this.inicializeAdapter();
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_settings, menu);
+        inflater.inflate(R.menu.menu_cliente, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.usuarios) {
-            Intent intent = new Intent(this, Usuarios.class);
+        if (item.getItemId() == R.id.historico) {
+            Intent intent = new Intent(this, MeuHistorico.class);
+            intent.putExtra("user",user);
             startActivity(intent);
             return true;
         }else if (item.getItemId() == R.id.sair) {
@@ -89,34 +95,5 @@ public class ListaProdutos extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void novoProduto(View view) {
-
-        Intent intent = new Intent(this, NovoProduto.class);
-        startActivityForResult(intent,SECOND_ACTIVITY_REQUEST_CODE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Check that it is the SecondActivity with an OK result
-        if (requestCode == SECOND_ACTIVITY_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-
-                // Get String data from Intent
-                String returnNome = data.getStringExtra("nome");
-                String returnPreco = data.getStringExtra("preco");
-
-                BancoController db = new BancoController(getBaseContext());
-                Produto produto = new Produto(returnNome, returnPreco);
-                String resultado = db.inserirProduto(produto.nome, produto.preco);
-                mAdapter.updateList(produto);
-
-                Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
-
-            }
-        }
     }
 }

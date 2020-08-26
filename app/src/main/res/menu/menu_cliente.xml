@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group >
 
-        <item android:id="@+id/usuarios"
-            android:title="Usuários" />
-        <item android:id="@+id/produtos"
-            android:title="Produtos" />
+        <item android:id="@+id/historico"
+            android:title="Meu histórico" />
+
         <item android:id="@+id/sair"
             android:title="Sair" />
+
 
     </group>
 

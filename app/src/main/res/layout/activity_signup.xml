@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:paddingHorizontal="64px"
-    >
+    android:padding="32dp"
+    tools:context=".Signup">
 
     <TextView
-        android:id="@+id/txtWelcome"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="300px"
-        android:text="Bem-vindo!"
-        android:textSize="32dp"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary" />
-
-    <TextView
-        android:id="@+id/txtEmail"
+        android:id="@+id/txtNome"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500px"
-        android:text="E-mail"
+        android:layout_marginTop="100dp"
+        android:text="Nome"
         android:textColor="@color/colorPrimary" />
 
     <EditText
-        android:id="@+id/edtEmail"
+        android:id="@+id/edtNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textWebEmailAddress"
         android:layout_marginTop="10px"
-        android:layout_below="@id/txtEmail"
+        android:layout_below="@id/txtNome"
         tools:layout_editor_absoluteX="12dp" />
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:layout_below="@id/edtNome"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:outlineAmbientShadowColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtEmail"
+        android:layout_marginTop="10px"/>
+
     <TextView
         android:id="@+id/txtSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Senha"
         android:layout_below="@id/edtEmail"
-        android:layout_marginTop="32px"
+        android:layout_marginTop="32dp"
         android:textColor="@color/colorPrimary"
         />
 
@@ -54,31 +61,31 @@
         android:layout_marginTop="10px"/>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/edtSenha"
-        android:layout_marginTop="66dp"
-        android:width="500px"
-        android:background="@color/colorPrimary"
-        android:text="Login"
-        android:onClick="login"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="54dp"
         android:layout_centerInParent="true"
-        android:textColor="#FFFFFF" />
+        android:width="150dp"
+        android:height="40dp"
+        android:background="@color/colorPrimary"
+        android:onClick="signup"
+        android:text="Signup"
+        android:textColor="#fff"></Button>
 
     <TextView
         android:id="@+id/txtSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Você não possui uma conta? Signup"
+        android:text="Já possui uma conta? Login"
         android:layout_centerInParent="true"
-        android:layout_below="@id/btnLogin"
-        android:onClick="signup"
+        android:layout_below="@id/btnSignup"
+        android:onClick="login"
         android:layout_marginTop="20dp"
         android:textSize="16dp"
         android:textColor="@color/colorPrimary"
         />
-
-
 
 </RelativeLayout>

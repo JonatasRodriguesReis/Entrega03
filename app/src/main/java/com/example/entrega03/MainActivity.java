@@ -36,12 +36,32 @@ public class MainActivity extends AppCompatActivity {
 
 
             if (cursor.getCount() > 0 || (email.equals("admin"))) {
-                Intent intent = new Intent(this, ListaProdutos.class);
+                Intent intent;
+                boolean isAdmin = true;
+                int user = 0;
+                if(cursor.getCount() > 0){
+                    isAdmin = cursor.getInt(cursor.getColumnIndex("admin")) == 1 ? true : false;
+                    cursor.getInt(cursor.getColumnIndex("_id"));
+                }
+
+                if(isAdmin)
+                    intent = new Intent(this, ListaProdutos.class);
+                else
+                    intent = new Intent(this,ProdutosLoja.class);
+                intent.putExtra("user",user);
                 startActivity(intent);
-                Toast.makeText(getApplicationContext(), "Bem vindo", Toast.LENGTH_LONG).show();
+
+                Toast.makeText(getApplicationContext(), "Bem-vindo", Toast.LENGTH_LONG).show();
+                this.email.setText("");
+                this.senha.setText("");
             }else{
                 Toast.makeText(getApplicationContext(), "Email ou senha incorretos!", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public void signup(View view){
+        Intent intent = new Intent(this, Signup.class);
+        startActivity(intent);
     }
 }
