@@ -1,12 +1,17 @@
 package com.example.entrega03;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Signup extends AppCompatActivity {
@@ -23,7 +28,7 @@ public class Signup extends AppCompatActivity {
         email = findViewById(R.id.edtEmail);
         senha = findViewById(R.id.edtSenha);
 
-        getSupportActionBar().setTitle("Signup");
+        setTitle("Signup");
     }
 
     public void login(View view){
@@ -61,7 +66,22 @@ public class Signup extends AppCompatActivity {
                 startActivity(intent);
 
                 Toast.makeText(getApplicationContext(), "Bem-vindo", Toast.LENGTH_LONG).show();
+                finish();
             }
 
+    }
+
+    private void setTitle(String title){
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        TextView textView = new TextView(this);
+        textView.setText(title);
+        textView.setTextSize(20);
+        textView.setTypeface(null, Typeface.BOLD);
+        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextColor(getResources().getColor(R.color.white));
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(textView);
     }
 }

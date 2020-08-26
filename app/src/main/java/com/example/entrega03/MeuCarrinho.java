@@ -1,5 +1,6 @@
 package com.example.entrega03;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -8,8 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,7 +34,7 @@ public class MeuCarrinho extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meu_carrinho);
-        getSupportActionBar().setTitle("Meu Carrinho");
+        setTitle("Meu Carrinho");
 
         this.meuCarrinho = (ArrayList<Produto>) getIntent().getSerializableExtra("listaCarrinho");
         this.clienteId = getIntent().getIntExtra("user",0);
@@ -41,20 +46,10 @@ public class MeuCarrinho extends AppCompatActivity {
         BancoController crud = new BancoController(getBaseContext());
         Cursor cursor = crud.carregaProdutos();
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         recyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        // specify an adapter (see also next example)
-
-        /*produtos = new ArrayList<Produto>();
-        produtos.add(new Produto("Pneu","120"));
-        produtos.add(new Produto("Arroz","130"));
-        produtos.add(new Produto("Feijão","150"));*/
 
         mAdapter = new MeuCarrinhoAdapter(meuCarrinho,this);
         recyclerView.setAdapter(mAdapter);
@@ -92,5 +87,19 @@ public class MeuCarrinho extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    private void setTitle(String title){
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        TextView textView = new TextView(this);
+        textView.setText(title);
+        textView.setTextSize(20);
+        textView.setTypeface(null, Typeface.BOLD);
+        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextColor(getResources().getColor(R.color.white));
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(textView);
     }
 }
