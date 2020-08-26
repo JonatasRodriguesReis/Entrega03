@@ -27,7 +27,7 @@
         android:id="@+id/txtPreco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preço"
+        android:text="Preço R$"
         android:layout_below="@id/edtNome"
         android:layout_marginTop="32dp"
         android:textColor="@color/colorPrimary"
@@ -38,6 +38,7 @@
         android:outlineAmbientShadowColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
         android:layout_below="@id/txtPreco"
         android:layout_marginTop="10px"/>
 

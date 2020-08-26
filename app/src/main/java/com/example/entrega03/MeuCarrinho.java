@@ -68,7 +68,7 @@ public class MeuCarrinho extends AppCompatActivity {
 
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("Você deseja finalizar a compra?")
-                .setMessage("O valor total é R$ " + Float.toString(total))
+                .setMessage("O valor total é R$ " + String.format("%.2f", total))
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

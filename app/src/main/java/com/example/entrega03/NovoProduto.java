@@ -36,7 +36,7 @@ public class NovoProduto extends AppCompatActivity {
         if(!nome.isEmpty() && !preco.isEmpty()){
             intent.putExtra("nome", nome);
             intent.putExtra("preco", preco);
-            //setResult(RESULT_OK, intent);
+            setResult(RESULT_OK, intent);
             finish();
         }
 

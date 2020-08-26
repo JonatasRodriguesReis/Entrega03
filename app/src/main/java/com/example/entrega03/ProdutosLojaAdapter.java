@@ -33,7 +33,7 @@ public class ProdutosLojaAdapter extends RecyclerView.Adapter {
         final ProdutosLojaViewHolder holder = (ProdutosLojaViewHolder) viewHolder;
         final Produto item  = lista.get(position) ;
         holder.nome.setText(item.nome);
-        holder.preco.setText("R$ " + item.preco);
+        holder.preco.setText("R$ " + String.format("%.2f", Float.parseFloat(item.preco)));
 
         holder.checkProduto.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

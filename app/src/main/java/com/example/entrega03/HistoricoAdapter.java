@@ -30,7 +30,7 @@ public class HistoricoAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
         VendasViewHolder holder = (VendasViewHolder) viewHolder;
         Venda item  = lista.get(position) ;
-        holder.total.setText("R$ " + item.total);
+        holder.total.setText("R$ " + String.format("%.2f", item.total));
         holder.data.setText(item.data);
     }
 

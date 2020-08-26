@@ -31,7 +31,7 @@ public class ProdutosAdapter extends RecyclerView.Adapter {
         ProdutosViewHolder holder = (ProdutosViewHolder) viewHolder;
         Produto item  = lista.get(position) ;
         holder.nome.setText(item.nome);
-        holder.preco.setText("R$ " + item.preco);
+        holder.preco.setText("R$ " + String.format("%.2f", Float.parseFloat(item.preco)));
 
         holder.buttonRemover.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
